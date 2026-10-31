@@ -1,4 +1,4 @@
-# 🚀 CI/CD Series
+# 🚀 CI/CD Series - Learning & Practical Projects
 
 ### Continuous Integration & Continuous Delivery / Deployment
 
@@ -264,9 +264,73 @@ The following projects will be developed as part of the learning process.
 ```text
 CI-CD-Series/
 │
-├── Jenkins/
+├── .github/                              # GitHub Actions default directory
+│   └── workflows/                        # GitHub Actions CI/CD workflow files
+|       |
+|       ├── day-1-<topic-name>.yaml       # day-1 CI/CD Pipeline
+|       ├── day-2-<topic-name>.yaml       # day-2 CI/CD Pipeline
+|       ├── ...
+|       |
+│       ├── project-1-dev.yaml            # Project 1 CI/CD Pipeline - dev
+│       ├── project-1-test.yaml           # Project 1 CI/CD Pipeline - test
+│       ├── project-1-prod.yaml           # Project 1 CI/CD Pipeline - prod
+|       |
+│       ├── project-2-dev.yaml            # Project 2 CI/CD Pipeline - dev
+│       ├── project-2-test.yaml           # Project 2 CI/CD Pipeline - test
+│       ├── project-2-prod.yaml           # Project 2 CI/CD Pipeline - prod
+|       |
+│       └── ...                    
 │
-├── GitHub-Actions/
+├── GitHub-Actions-Projects/              # GitHub Actions learning projects
+│   │
+│   ├── Project-1-Basic-CI/
+│   │   ├── Application/
+│   │   ├── Tests/
+│   │   └── README.md
+│   │
+│   ├── Project-2-Terraform-Infrastructure/
+│   │   ├── Application/
+│   │   ├── Terraform/
+│   │   │   ├── main.tf
+│   │   │   ├── variables.tf
+│   │   │   └── outputs.tf
+│   │   └── README.md
+│   │
+│   ├── Project-3-Docker-CI-CD/
+│   │   ├── Application/
+│   │   ├── Docker/
+│   │   │   └── Dockerfile
+│   │   ├── Tests/
+│   │   └── README.md
+│   │
+│   ├── Project-4-Kubernetes-Deployment/
+│   │   ├── Application/
+│   │   ├── Docker/
+│   │   ├── Kubernetes/
+│   │   │   ├── deployment.yaml
+│   │   │   ├── service.yaml
+│   │   │   └── configmap.yaml
+│   │   └── README.md
+│   │
+│   ├── Project-5-Ansible-Automation/
+│   │   ├── Application/
+│   │   ├── Ansible/
+│   │   │   ├── inventory.ini
+│   │   │   └── playbook.yml
+│   │   └── README.md
+│   │
+│   ├── Project-6-End-to-End-CI-CD/
+│   │   ├── Application/
+│   │   ├── Docker/
+│   │   ├── Kubernetes/
+│   │   ├── Terraform/
+│   │   ├── Ansible/
+│   │   ├── Tests/
+│   │   └── README.md
+│   │
+│   └── README.md
+│
+├── Jenkins/
 │
 ├── Azure-DevOps/
 │
