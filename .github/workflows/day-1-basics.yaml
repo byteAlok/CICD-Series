@@ -1,0 +1,58 @@
+# Workflow Identity: Define the name of the workflow 
+name: Day 01 - GitHub Actions Basics
+
+# Trigger: It decides when the workflow will be executed 
+on:
+
+  # Automatically trigger the workflow on every push to the main branch
+  # push:
+  #   branches: 
+  #     - main
+
+  # Manual trigger
+  workflow_dispatch: 
+    
+# Permissions: Decide what access the workflow token will have 
+permissions: 
+  contents: read
+  
+# Jobs and Runner: What work will be executed and on which machine 
+jobs:
+
+  # First job: # Job ID (custom name used to identify each job within the workflow) 
+  basic:
+    name: Github actions basic job
+    
+    # GitHub-hosted runner
+    runs-on: ubuntu-latest
+
+    # Steps inside the job
+    steps:
+
+      # Step 1
+      - name: Welcome Message
+        run: echo "Hello day-1 Welcome to github actions"
+
+      # Step 2
+      - name: Display runner information
+        run: |
+          echo "Githun action practical day - 1"
+          echo "Runner operating system"
+          uname -a
+
+      # Step 3
+      - name: Display current directory
+        run: |
+          echo "Current working directory
+          pwd
+
+      # Step 4 
+      - name: Display current user
+        run: |
+          echo "Current runner user:"
+          whoami
+
+      # Step 5
+      - name: Practical Completed
+        run: echo "Day 1 workflow executed successfully!"
+        
