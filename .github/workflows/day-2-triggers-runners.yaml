@@ -6,24 +6,24 @@ on:
   # Automatically trigger on every push --> if any conditions (Type 1 or 2 or 3) match
   push:
 
-    # Type 1: Automatically trigger on every push to main OR test --> Current Repository inside 
+    # Type 1: Automatically trigger on every push to main OR test
     # branches:
     #   - main
     #   - test
       
-    # Type 2: Automatically trigger on every push to main branch of --> Terraform-Azure/** OR Terraform-GCP/** Repository
+    # Type 2: Automatically trigger on every push to main branch of this paths --> Azure-DevOps/** OR GitLab-CICD/** 
     branches:
       - main
     paths:
-      - 'Terraform-Azure/**'
-      - 'Terraform-GCP/**'
+      - 'Azure-DevOps/**'
+      - 'GitLab-CICD/**'
 
-    # Type 3: Automatically trigger on every push to ANY Branches --> Excluding => test/** --> Current Repository inside
+    # Type 3: Automatically trigger on every push to ANY Branches --> Excluding => test/**
     # branches:
     #   - '**'
     #   - '!test/**'
-      
-  # Trigger when a PR (pull_request) targets main --> Current Repository inside 
+
+  # Trigger when a PR (pull_request) targets main 
   # pull_request:
   #   branches:
   #     - main
@@ -35,10 +35,10 @@ on:
   # Manually trigger from GitHub Actions dashboard
   workflow_dispatch: 
 
-  # Runs every 10 minutes 
+  # Runs every 5 minutes 
   schedule:
-    - cron: '*/10 * * * *'
-
+    - cron: '*/5 * * * *'
+    
 # Minimum required permissions
 permissions: 
   contents: read
