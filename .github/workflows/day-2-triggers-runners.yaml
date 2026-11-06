@@ -1,4 +1,5 @@
-name: Day 02 triggers runners
+# Automatically runs workflows on code pushes, pull requests, or manual triggers using Ubuntu, Windows, and macOS runners.
+name: Day 02 - Triggers runners
 
 # Workflow Triggers
 on: 
@@ -98,7 +99,4 @@ jobs:
           echo "$RUNNER_NAME"
           echo "Runner OS: "
           echo "$RUNNER_OS"
-
-
-
-    
+          
