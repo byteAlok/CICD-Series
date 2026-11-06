@@ -3,7 +3,7 @@ name: Day 02 triggers runners
 # Workflow Triggers
 on: 
 
-  # Automatically trigger on every push --> if any conditions (Type 1 or 2 or 3) match
+  # Automatically trigger on every push 
   push:
 
     # Type 1: Automatically trigger on every push to main OR test
@@ -34,10 +34,6 @@ on:
       
   # Manually trigger from GitHub Actions dashboard
   workflow_dispatch: 
-
-  # Runs every 5 minutes 
-  schedule:
-    - cron: '*/5 * * * *'
     
 # Minimum required permissions
 permissions: 
