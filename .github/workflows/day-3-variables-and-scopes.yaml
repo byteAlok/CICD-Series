@@ -1,0 +1,102 @@
+# Shows WORKFLOW, JOB, and STEP-level environment variables, their scopes, and DEFAULT GitHub variables.
+name: Day 03 - Variables and Scopes
+
+on:
+  workflow_dispatch:
+
+# Workflow-level Environment Variables (Global) accessible anywhere in this file ---------------------
+
+# Predefined keyword that tells GitHub Actions to initialize and define environment variables
+env:
+
+  # Variable names don't need uppercase --> just follow standard programming naming rules  
+  APP_NAME: MyApp
+  ENVIRONMENT: Development
+  version: 1
+
+jobs:
+  build-1:     # ---> using Workflow-level Environment Variables
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display Variables
+        run: |
+          echo "Application: $APP_NAME"
+          echo "Environment: $ENVIRONMENT"
+          echo "GitHub Expression: ${{ env.APP_NAME }}"
+
+      # --------- Variables access methods ----------
+      # GitHub Actions expression context --> ${{ env.APP_NAME }}
+      # Bash variable access --> $APP_NAME
+      # PowerShell variable access --> $env:APP_NAME
+          
+# Job Level - Environment variables scoped only to a specific JOB ------------------------------------
+
+  build-2:
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE: MySQL
+      BUILD_TYPE: Production
+
+    steps:
+      - name: Display Job Level Variables
+        run: |
+          echo "DATABASE: $DATABASE"
+          echo "Build Type: $BUILD_TYPE" 
+          
+      - name: Display Workflow Level Variables
+        run: |
+          echo "Application: $APP_NAME"
+          echo "Environment: $ENVIRONMENT"
+          echo "VERSION: $version"
+
+# Step-level - Environment Variables scoped only to a specific STEP ------------------------------------
+  
+  build-3:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Step 1 ---------------------------------------------------------------
+      - name: Step 1
+        env:
+          APP_NAME: Zomato
+          
+        # Here we are using Step-Level Variable, and the output is --> Zomato
+        run: |
+          echo "Application: $APP_NAME"
+
+      # Step 2 ---------------------------------------------------------------
+      - name: Step 2
+      # Here we are using Workflow-Level Variables, and the output is --> MyApp
+        run: |
+          echo "Application: $APP_NAME"
+
+      # Step 3 ---------------------------------------------------------------
+      - name: Display Workflow Level Variables
+        # Here we are using Workflow-Level Variables,
+        run: |
+          echo "Application: $APP_NAME"
+          echo "Environment: $ENVIRONMENT"
+          echo "VERSION: $version"
+
+
+      # Step 4 ============== Default Environment Variables ===================
+      - name: Display GitHub Information
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Workspace: $GITHUB_WORKSPACE"
+          echo "Actor: $GITHUB_ACTOR"
+          echo "Branch/Ref: $GITHUB_REF"
+          echo "Commit SHA: $GITHUB_SHA"
+          echo "Runner OS: $RUNNER_OS"
+
+        # GITHUB_REPOSITORY   -->	 Repository name with owner  
+        # GITHUB_WORKSPACE    -->	 Working directory path
+        # GITHUB_ACTOR	      -->  The GitHub user who triggered the workflow
+        # GITHUB_REF          -->  Branch or tag reference
+        # GITHUB_SHA          -->  Commit SHA
+        # RUNNER_OS	          -->  Runner operating system
+        # RUNNER_NAME	        -->  Runner name
+
