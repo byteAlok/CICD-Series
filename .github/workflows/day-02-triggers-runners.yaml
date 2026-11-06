@@ -1,0 +1,108 @@
+name: Day 02 triggers runners
+
+# Workflow Triggers
+on: 
+
+  # Automatically trigger on every push --> if any conditions (Type 1 or 2 or 3) match
+  push:
+
+    # Type 1: Automatically trigger on every push to main OR test --> Current Repository inside 
+    # branches:
+    #   - main
+    #   - test
+      
+    # Type 2: Automatically trigger on every push to main branch of --> Terraform-Azure/** OR Terraform-GCP/** Repository
+    branches:
+      - main
+    paths:
+      - 'Terraform-Azure/**'
+      - 'Terraform-GCP/**'
+
+    # Type 3: Automatically trigger on every push to ANY Branches --> Excluding => test/** --> Current Repository inside
+    # branches:
+    #   - '**'
+    #   - '!test/**'
+      
+  # Trigger when a PR (pull_request) targets main --> Current Repository inside 
+  # pull_request:
+  #   branches:
+  #     - main
+  #   types:
+  #     - opened
+  #     - synchronize
+  #     - reopened
+      
+  # Manually trigger from GitHub Actions dashboard
+  workflow_dispatch: 
+
+  # Runs every 10 minutes 
+  schedule:
+    - cron: '*/10 * * * *'
+
+# Minimum required permissions
+permissions: 
+  contents: read
+
+jobs:
+
+  # Job 1 - GitHub-hosted Ubuntu runner -----------------------
+  runner_information_ubuntu:
+    name: Runner Information Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      # Step 1
+      - name: Welcome Message
+        run: echo "Day 2 - Ubuntu Runner"
+
+      # Step 2
+      - name: Runner Information
+        run: |
+          echo "Runner Name: "
+          echo "$RUNNER_NAME"
+          echo "Runner OS: "
+          echo "$RUNNER_OS"
+
+  # Job 2 - GitHub-hosted Windows runner --------------------------
+  runner_information_windows:
+    name: Runner Information Windows
+    runs-on: windows-latest
+  
+    steps:
+
+      # Step 1
+      - name: Welcome Message
+        run: echo "Day 2 - Windows Runner"
+
+      # Step 2
+      - name: Runner Information
+        run: |
+          echo "Runner Name: "
+          echo "$env:RUNNER_NAME"
+          echo "Runner OS: "
+          echo "$env:RUNNER_OS"
+        shell: pwsh
+    
+  # Job 2 - GitHub-hosted Mac OS runner ----------------------------
+  runner_information_macos:
+    name: Runner Information MacOS
+    runs-on: macos-latest
+
+    steps:
+
+      # Step 1
+      - name: Welcome Message
+        run: echo "Day 2 - macOS Runner"
+
+      # Step 2
+      - name: Runner Information
+        run: |
+          echo "Runner Name: "
+          echo "$RUNNER_NAME"
+          echo "Runner OS: "
+          echo "$RUNNER_OS"
+
+
+
+    
