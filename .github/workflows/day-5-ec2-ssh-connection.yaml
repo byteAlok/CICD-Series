@@ -1,0 +1,48 @@
+# Connecting to a Public EC2 Instance via SSH using GitHub Actions 
+name: Day 5 - EC2 SSH Connection
+
+on:
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+jobs:
+    deploy-to-ec2:
+        name: Deploy Application to EC2
+        runs-on: ubuntu-latest
+
+        steps:
+            # Step 1: Checkout Repository
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            # Step 2: Configure SSH
+            - name: Configure SSH
+              run: |
+                  mkdir -p ~/.ssh
+
+                  echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+                  chmod 400 ~/.ssh/id_rsa
+
+                  ssh -i ~/.ssh/id_rsa ec2-user@${{ secrets.EC2_HOST }} << EOF
+                  echo 'SSH connection established successfully!'
+
+                  echo "User: $(whoami)"
+                  echo "Hostname: $(hostname)"
+                  echo "Working Directory: $(pwd)"
+
+                  sudo apt update -y
+                  sudo apt install nginx -y
+
+                  sudo systemctl start nginx
+                  sudo systemctl enable nginx
+
+                  echo 'Nginx status:'
+                  sudo systemctl status nginx --no-pager
+
+                  EOF
+
+                  rm -f ~/.ssh/id_rsa
+
+                  
