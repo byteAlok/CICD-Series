@@ -1,5 +1,5 @@
-# Day 6 - Covers Job Dependencies, Job Results, and Conditional Job Execution in GitHub Actions.
-name: Day 06 - Job Dependencies and Results 
+# Day 4 - Covers Job Dependencies, Job Results, and Conditional Job Execution in GitHub Actions.
+name: Day 04 - Job Dependencies and Results 
 
 on:
   workflow_dispatch: 
