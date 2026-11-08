@@ -1,0 +1,106 @@
+# Day 5 - Covers GitHub Actions Expressions, Contexts, Conditions and Status Check Functions
+name: Day 05 – Condition and Status Functions
+
+# -------- [A] ------------- Example 1 : Conditions ------------------------
+on:
+  workflow_dispatch:
+
+env:
+  DEPLOY_ENV: production
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Using if condition
+      - name: Production Deployment
+        if: env.DEPLOY_ENV == 'production'
+        run: |
+          echo "Deploying to Production..."
+          echo "APP URL : $DEPLOY_ENV"
+
+      # Using if condition
+      - name: Development Deployment
+        if: env.DEPLOY_ENV == 'development'
+        run: |
+          echo "Deploying to Development..."
+          echo "APP URL : $DEPLOY_ENV"
+
+      # Using Ternary-like condition  -->  ${{ condition && 'True Value' || 'False Value' }}
+      - name: Ternary Decision
+        run: echo "${{env.DEPLOY_ENV == 'production' && 'https://prod.example.com' || 'https://dev.example.com'}}"
+
+# ---------- [B] ----------- Example 2 : Conditions ------------------------
+
+# on:
+#   push:
+#   pull_request:
+#   workflow_dispatch:
+
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Run Tests
+#         if: github.event_name == 'pull_request'
+#         run: echo "Running tests for Pull Request..."
+
+#       - name: Normal Build
+#         if: github.event_name == 'push'
+#         run: echo "Running build for Push event..."
+
+
+# ------------ [C] -------------- Example 1 : Status Check Functions -------------------------------
+
+  status-check-1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Successful Step
+        run: echo "Step executed successfully"
+
+      - name: Success Function
+        if: success()
+        run: echo "Previous steps succeeded"
+
+      - name: Failure Function
+        if: failure()
+        run: echo "Previous step failed"
+
+      - name: Always Function
+        if: always()
+        run: echo "This step always runs"
+
+      - name: Cancelled Function
+        if: cancelled()
+        run: echo "Workflow was cancelled"
+
+
+# ------------- [D] ------------- Example 2 : Status Check Functions -------------------------------
+
+  status-check-2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build Application
+
+        # Exit Code 1 - Manually generating failure
+        # Exit Code 0 - Successful execution (normally returned automatically)
+        run: |
+          echo "Building Application..."
+          exit 1
+
+      - name: Build Success
+        if: success()
+        run: echo "Build Successful"
+
+      - name: Build Failed
+        if: failure()
+        run: echo "Build Failed! Sending Notification..."
+
+      - name: Cleanup
+        if: always()
+        run: echo "Performing Cleanup..."
+
