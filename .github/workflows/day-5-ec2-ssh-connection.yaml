@@ -32,8 +32,8 @@ jobs:
                   echo "Hostname: $(hostname)"
                   echo "Working Directory: $(pwd)"
 
-                  sudo apt update -y
-                  sudo apt install nginx -y
+                  sudo dnf update -y
+                  sudo dnf install nginx -y
 
                   sudo systemctl start nginx
                   sudo systemctl enable nginx
