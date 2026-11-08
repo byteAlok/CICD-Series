@@ -1,0 +1,99 @@
+# Day 6 - Covers Job Dependencies, Job Results, and Conditional Job Execution in GitHub Actions.
+name: Day 06 - Job Dependencies and Results 
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  # ------------- [1] ------------- Job Dependencies -------------------------------
+  # Job 1
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: echo "Building Application..."
+
+  # Job 2
+  test:
+    name: Test Application
+    runs-on: ubuntu-latest
+    needs: build  # Wait for build job to complete
+    steps:
+      - name: Test
+        run: echo "Testing Application..."
+
+  # Job 3
+  deploy:
+    name: Deploy Application
+    runs-on: ubuntu-latest
+    needs: test  # Wait for test job to complete
+    steps:
+      - name: Deploy
+        run: echo "Deploying Application..."
+
+  # Job 4
+  final-message:
+    name: Final Completion Message
+    runs-on: ubuntu-latest
+    needs: [build, test, deploy]   # Wait for multiple jobs to complete
+    steps:
+      - name: Final Message
+        run: echo "All Jobs are done!"
+
+
+  # ----------- [2] ----------------- Job Results ----------------------------------
+
+  # Build Application ====================================
+  build-app:
+    name: Build Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        # Exit Code 1 - Manually generating failure
+        # Exit Code 0 - Successful execution (normally returned automatically)
+        run: |
+          echo "Building Application..."
+          # exit 1  # Uncomment to generate failure
+          exit 0   # Successful execution
+
+  # Build Success Message ================================
+  success-message:
+    name: Build Success Message
+    runs-on: ubuntu-latest
+    needs: build-app  # Wait for build-app job to complete
+
+    # Execute only when build-app job is successful
+    # always() allows this condition to be evaluated even if the dependency fails
+    if: always() && needs.build-app.result == 'success'
+
+    steps:
+      - name: Success
+        run: echo "Build completed successfully!"
+
+  # Build Failure Message =================================
+  failure-message:
+    name: Build Failure Message
+    runs-on: ubuntu-latest
+    needs: build-app  # Wait for build-app job to complete
+
+    # Execute only when build-app job fails
+    if: always() && needs.build-app.result == 'failure'
+
+    steps:
+      - name: Failure
+        run: echo "Build failed! Sending notification..."
+
+  # Build Cancelled Message ===============================
+  cancelled-message:
+    name: Build Cancelled Message
+    runs-on: ubuntu-latest
+    needs: build-app  # Wait for build-app job to complete
+
+    # Execute only when build-app job is cancelled
+    if: always() && needs.build-app.result == 'cancelled'
+
+    steps:
+      - name: Cancelled
+        run: echo "Build was cancelled!"
+        
