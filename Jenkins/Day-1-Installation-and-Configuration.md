@@ -1,4 +1,4 @@
-# 🛠️ Jenkins – Installation Commands
+# 🛠️ Day 01 – Installation and Configuration 
 
 This document provides installation command references for Jenkins and additional tools used in Jenkins-based CI/CD pipelines.
 
