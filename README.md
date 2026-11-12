@@ -124,8 +124,8 @@ Learning Jenkins for automating software build, testing, and deployment workflow
 - GitHub Integration
 - Environment Variables
 - Parameters and Build Conditions
-- Pipeline Notifications
-- Jenkins Backup and Security
+- Pipeline Notifications (📌 To Be Covered in Future)
+- Jenkins Backup and Security (📌 To Be Covered in Future)
 
 ### 03. 🐙 GitHub Actions
 
@@ -264,11 +264,18 @@ The following projects will be developed as part of the learning process.
 ```text
 CI-CD-Series/
 │
-├── .github/                              # GitHub Actions default directory
-│   └── workflows/                        # GitHub Actions CI/CD workflow files
+├── .github/                 # GitHub Actions default directory
+│   └── workflows/           # GitHub Actions CI/CD workflow files
 |       |
-|       ├── day-1-<topic-name>.yaml       # day-1 CI/CD Pipeline
-|       ├── day-2-<topic-name>.yaml       # day-2 CI/CD Pipeline
+│       ├── day-01-basics.yaml                          # Day 01 – GitHub Actions Basics ✅
+│       ├── day-02-triggers-runners.yaml                # Day 02 – Triggers & Runners ✅
+│       ├── day-03-variables-and-scopes.yaml            # Day 03 – Variables and Scopes ✅
+│       ├── day-03-variables-and-secrets.yaml           # Day 03 – Variables and Secrets ✅
+│       ├── day-04-conditions-and-functions.yaml        # Day 04 – Conditions and Functions ✅
+│       ├── day-04-job-dependencies-and-results.yaml    # Day 04 – Job Dependencies and Results ✅
+│       ├── day-05-ec2-ssh-connection.yaml              # Day 05 – EC2 SSH Connection ✅
+|       |
+|       ├── day-6-<topic-name>.yaml       
 |       ├── ...
 |       |
 │       ├── project-1-dev.yaml            # Project 1 CI/CD Pipeline - dev
@@ -279,7 +286,7 @@ CI-CD-Series/
 │       ├── project-2-test.yaml           # Project 2 CI/CD Pipeline - test
 │       ├── project-2-prod.yaml           # Project 2 CI/CD Pipeline - prod
 |       |
-│       └── ...                    
+│       └── ...
 │
 ├── GitHub-Actions-Projects/              # GitHub Actions learning projects
 │   │
@@ -330,7 +337,28 @@ CI-CD-Series/
 │   │
 │   └── README.md
 │
-├── Jenkins/
+├── Jenkins/          # Jenkins Learning – Completed ✅
+│   │
+│   ├── Day-01-Installation-and-Configuration.md          # Completed ✅
+│   ├── Day-02-Declarative-Pipeline-and-Post-Actions.md   # Completed ✅
+│   ├── Day-03-Input-and-Manual-Approval.md               # Completed ✅
+│   ├── Day-04-Timeout-Error-Handling.md                  # Completed ✅
+│   ├── Day-05-Jenkins-Controller-Agent-Architecture.md   # Completed ✅
+│   ├── Day-06-Jenkins-Inbound-Agent-Setup.md             # Completed ✅
+│   ├── Day-07-Jenkins-SSH-Agents-and-Parallel-Builds.md  # Completed ✅
+│   ├── Day-08-Scripted-Pipeline-and-Groovy.md            # Completed ✅
+│   │
+│   ├── Day-09-Jenkinsfile-and-Pipeline-as-Code/          # Completed ✅
+│   │
+│   ├── Day-10-Poll-SCM-and-Build-Triggers.md             # Completed ✅
+│   ├── Day-11-Github-Webhooks-and-Triggers.md            # Completed ✅
+│   │
+│   ├── Projects/                          
+│   │   │
+│   │   ├── Project-1/       # Upcoming 🚀
+│   │   └── Project-2/       # Upcoming 🚀
+│   │
+│   └── README.md            # Completed ✅
 │
 ├── Azure-DevOps/
 │
