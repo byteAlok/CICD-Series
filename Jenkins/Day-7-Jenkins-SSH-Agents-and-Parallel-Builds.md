@@ -978,3 +978,11 @@ We now understand:
 - 📂 `known_hosts`
 - ⚡ Parallel Pipeline Execution
 - ☁️ Jenkins Distributed Architecture on AWS EC2
+
+---
+
+## 🚀 Next Learning Step
+
+**Day 08 – Scripted Pipeline & Groovy**
+
+In the next session, we will explore Scripted Pipeline fundamentals, understand how Groovy works with Jenkins, compare Declarative and Scripted Pipelines, and practice Groovy variables, collections, loops, methods, and closures.
